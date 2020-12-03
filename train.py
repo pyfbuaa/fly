@@ -11,6 +11,7 @@ from lib.datasets.factory import get_imdb
 from lib.datasets.imdb import imdb as imdb2
 from lib.layer_utils.roi_data_layer import RoIDataLayer
 from lib.nets.vgg16 import vgg16
+from lib.nets.resnet_v1 import resnetv1
 from lib.utils.timer import Timer
 
 try:
@@ -62,8 +63,8 @@ class Train:
     def __init__(self):
 
         # Create network
-        if cfg.FLAGS.network == 'vgg16':
-            self.net = vgg16(batch_size=cfg.FLAGS.ims_per_batch)
+        if cfg.FLAGS.network == 'resnetv1':
+            self.net = resnetv1(batch_size=cfg.FLAGS.ims_per_batch)
         else:
             raise NotImplementedError
 
