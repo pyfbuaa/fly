@@ -63,6 +63,8 @@ class Train:
     def __init__(self):
 
         # Create network
+        # if cfg.FLAGS.network == 'vgg16':
+        #     self.net = vgg16(batch_size=cfg.FLAGS.ims_per_batch)
         if cfg.FLAGS.network == 'resnetv1':
             self.net = resnetv1(batch_size=cfg.FLAGS.ims_per_batch)
         else:
@@ -195,13 +197,15 @@ class Train:
             os.makedirs(self.output_dir)
 
         # Store the model snapshot
-        filename = 'vgg16_faster_rcnn_iter_{:d}'.format(iter) + '.ckpt'
+        # filename = 'vgg16_faster_rcnn_iter_{:d}'.format(iter) + '.ckpt'
+        filename = 'resnet_faster_rcnn_iter_{:d}'.format(iter) + '.ckpt'
         filename = os.path.join(self.output_dir, filename)
         self.saver.save(sess, filename)
         print('Wrote snapshot to: {:s}'.format(filename))
 
         # Also store some meta information, random state, etc.
-        nfilename = 'vgg16_faster_rcnn_iter_{:d}'.format(iter) + '.pkl'
+        # nfilename = 'vgg16_faster_rcnn_iter_{:d}'.format(iter) + '.pkl'
+        nfilename = 'resnet_faster_rcnn_iter_{:d}'.format(iter) + '.pkl'
         nfilename = os.path.join(self.output_dir, nfilename)
         # current state of numpy random
         st0 = np.random.get_state()
